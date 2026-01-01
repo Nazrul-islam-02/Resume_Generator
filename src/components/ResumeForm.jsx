@@ -1,45 +1,44 @@
-import { useState } from "react";
 
-const ResumeForm = ({ getdata }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    skills: "",
-    experience: "",
-    education: "",
-  });
+import React, { useState } from 'react';
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+const ResumeForm = ({getData}) => {
+    // console.log(getData);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    getdata(formData);
-  };
+    const [formData , setFormData] = useState({
+        name:"",
+        email:"",
+        image:"",
+        
+    })
 
-  return (
-    <div>
-    <form onSubmit ={handleSubmit}>
-      <input name="name" placeholder="Full Name" onChange={handleChange} required />
-      <br /><br />
+    const handleChange = (e)=>{
+        if(e.target.type === 'file'){
+            setFormData({...formData,[e.target.name]: e.target.files[0]});
 
-      <input name="email" placeholder="Email" onChange={handleChange} required />
-      <br /><br />
+        }else{
+        setFormData({...formData,[e.target.name]: e.target.value});
+        }
+    }
 
-      <textarea name="skills" placeholder="Skills" onChange={handleChange} />
-      <br /><br />
 
-      <textarea name="experience" placeholder="Experience" onChange={handleChange} />
-      <br /><br />
+    const hangleSubmit = (e)=>{
+        e.preventDefault();
+        getData(formData);
+    }
 
-      <textarea name="education" placeholder="Education" onChange={handleChange} />
-      <br /><br />
+    return (
+        <div>
+            <form action="" onSubmit={hangleSubmit}>
 
-      <button type="submit">Generate Resume</button>
-    </form>
-    </div>
-  );
+                <input type="text" name='name' onChange={handleChange} placeholder='Enter your name' />
+                <br />
+                <input type="email" name='email' onChange={handleChange} placeholder='Enter your email' />
+                <br />
+                <input type="file" name='image' accept='image/' onChange={handleChange} />
+                <button type='submit' className='bg-green-300 rounded-lg p-2 cursor-pointer'>ResumeGenerate</button>
+            </form>
+        </div>
+    );
 };
 
-export default ResumeForm;
+export default ResumeForm

@@ -1,21 +1,22 @@
-import { useState } from "react";
-import ResumeForm from "./components/ResumeForm";
-import ResumePreview from "./components/ResumePreview";
+import React, { useState } from 'react';
+import ResumePreview from './components/ResumePreview';
+import ResumeForm from './components/ResumeForm';
 
-function App() {
-  const [resumeData, setResumeData] = useState(null);
+const App = () => {
 
+  const [resumeData, setResumeData] = useState("");
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial" }}>
-      <h1>Auto Resume Generator</h1>
+    <div>
 
-      {(!resumeData) ? (
-        <ResumeForm getdata={setResumeData} />
-      ) : (
-        <ResumePreview data={resumeData} />
-      )}
+      {/* {console.log(resumeData.name)} */}
+
+      <h1>kkk{}</h1>
+      {
+        (resumeData)?(<ResumePreview data={resumeData} ></ResumePreview>)
+                   :(<ResumeForm getData = {setResumeData}></ResumeForm>)
+      }
     </div>
   );
-}
+};
 
 export default App;
